@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <mat-icon>done_all</mat-icon>
+    <span>Solvo</span>
+    <span class="example-spacer"></span>
+    <span>Welcome, Stoyan</span>
+    <mat-icon class="example-icon" mat-button [matMenuTriggerFor]="menu">face</mat-icon>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Login</button>
+      <button mat-menu-item>Register</button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
