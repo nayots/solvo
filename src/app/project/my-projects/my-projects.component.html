@@ -1,0 +1,35 @@
+<div class="gridWrapper">
+  <div class="cardWrapper" *ngFor="let i of [1,2,3,4,5]">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Project Name</mat-card-title>
+        <mat-card-subtitle>
+          <mat-chip-list>
+            <mat-chip>#angular</mat-chip>
+            <mat-chip>#c</mat-chip>
+            <mat-chip>#yolo</mat-chip>
+          </mat-chip-list>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
+          very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
+        </p>
+        <mat-chip-list>
+          <mat-chip color="primary" selected>SG</mat-chip>
+          <mat-chip color="primary" selected>ST</mat-chip>
+          <mat-chip color="primary" selected>ZD</mat-chip>
+          <mat-chip color="primary" selected>AS</mat-chip>
+        </mat-chip-list>
+      </mat-card-content>
+      <mat-card-actions class="projectBtnsWrapper">
+        <a mat-stroked-button matBadge="8" matBadgePosition="after" matBadgeColor="accent" routerLink="/">
+          View
+        </a>
+        <a mat-stroked-button routerLink="/">Edit</a>
+        <a mat-stroked-button routerLink="/">Delete</a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

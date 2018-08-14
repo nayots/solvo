@@ -15,7 +15,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
-import { NavigationComponent } from './navigation/navigation.component';
+import { NavigationComponent } from "./navigation/navigation.component";
+import { ProjectModule } from "./project/project.module";
 
 @NgModule({
   declarations: [AppComponent, NavigationComponent],
@@ -30,7 +31,8 @@ import { NavigationComponent } from './navigation/navigation.component';
     MatButtonModule,
     MatCardModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    ProjectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

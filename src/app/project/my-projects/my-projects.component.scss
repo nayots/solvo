@@ -1,0 +1,13 @@
+.gridWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  .cardWrapper {
+    margin: 7px;
+  }
+}
+
+.projectBtnsWrapper {
+  a {
+    margin: auto 7px;
+  }
+}
