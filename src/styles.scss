@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 html,
 body {
   height: 100%;
@@ -7,4 +7,30 @@ body {
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
+}
+.full-width {
+  width: 100%;
+}
+
+.centeredForm {
+  width: 35%;
+  height: auto;
+  margin: 0 auto;
+  position: relative;
+}
+
+.centeredContentWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cancelBtn {
+  margin-left: 10px !important;
+}
+
+.crudOptions {
+  a:not(:first-child) {
+    margin-left: 10px;
+  }
 }

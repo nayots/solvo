@@ -1,0 +1,31 @@
+<div class="viewProjectWrapper">
+  <div class="centeredContentWrapper">
+    <h1>Some title {{projectId}}</h1>
+  </div>
+  <div class="centeredContentWrapper">
+    <p class="projectDescription">
+      Lorem ipsum dolor sit amet, quo an hinc delenit facilis. Eum cu everti numquam, in impetus elaboraret eam. Ad sea oblique
+      aliquando, nonumes interesset vix no. Ne sit invidunt suavitate concludaturque, dolore vituperata elaboraret cu eam,
+      principes maiestatis vix an. Id feugait reprimique ius, mazim vivendo repudiare id ius. Ex mei illud voluptua. Amet
+      decore mnesarchum per id, in nec fastidii copiosae. Eu nostrud volutpat vis, has et eripuit volutpat, et mea modus
+      minimum oporteat.
+    </p>
+  </div>
+  <div class="centeredContentWrapper">
+    <a mat-raised-button color="primary" routerLink="/issues/{{projectId}}/add">Add Issue</a>
+  </div>
+  <mat-list>
+    <div>
+      <h3 mat-subheader>Issues</h3>
+    </div>
+    <mat-list-item *ngFor="let i of [1,2,3,4,5]">
+      <mat-icon mat-list-icon matBadge="15" matBadgeColor="primary">remove_red_eye</mat-icon>
+      <h4 mat-line>Folder dasda</h4>
+      <p mat-line>Jan 1, 2016</p>
+      <div class="projectViewIssueBtn">
+        <a class="cancelBtn" mat-raised-button color="primary" routerLink="/issues/{{projectId}}/view/{{i}}">View</a>
+      </div>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+</div>

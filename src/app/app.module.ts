@@ -6,20 +6,19 @@ import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 
 import { environment } from "../environments/environment";
-import { AppRoutingModule } from "./app-routing.module";
+import { AppRoutingModule } from "./modules/app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
-import { MatMenuModule } from "@angular/material/menu";
-import { MatButtonModule } from "@angular/material/button";
-import { MatCardModule } from "@angular/material/card";
-import { MatToolbarModule } from "@angular/material/toolbar";
-import { MatIconModule } from "@angular/material/icon";
-import { NavigationComponent } from "./navigation/navigation.component";
-import { ProjectModule } from "./project/project.module";
+import { ProjectModule } from "./modules/project/project.module";
+import { AuthModule } from "./modules/auth/auth.module";
+import { MaterialModule } from "./modules/material/material.module";
+import { NavigationComponent } from "./shared/components/navigation/navigation.component";
+import { NotFoundComponent } from "./shared/components/not-found/not-found.component";
+import { IssuesModule } from "./modules/issues/issues.module";
+import { LandingComponent } from './shared/components/landing/landing.component';
 
 @NgModule({
-  declarations: [AppComponent, NavigationComponent],
+  declarations: [AppComponent, NavigationComponent, NotFoundComponent, LandingComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,12 +26,10 @@ import { ProjectModule } from "./project/project.module";
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     BrowserAnimationsModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatIconModule,
-    ProjectModule
+    ProjectModule,
+    AuthModule,
+    MaterialModule,
+    IssuesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

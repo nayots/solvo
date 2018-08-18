@@ -24,11 +24,11 @@
         </mat-chip-list>
       </mat-card-content>
       <mat-card-actions class="projectBtnsWrapper">
-        <a mat-stroked-button matBadge="8" matBadgePosition="after" matBadgeColor="accent" routerLink="/">
+        <a mat-stroked-button matBadge="8" matBadgePosition="after" matBadgeColor="accent" routerLink="/projects/view/{{i}}">
           View
         </a>
-        <a mat-stroked-button routerLink="/">Edit</a>
-        <a mat-stroked-button routerLink="/">Delete</a>
+        <a mat-stroked-button routerLink="/projects/edit/{{i}}">Edit</a>
+        <a mat-stroked-button routerLink="/projects/delete/{{i}}">Delete</a>
       </mat-card-actions>
     </mat-card>
   </div>

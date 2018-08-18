@@ -12,8 +12,8 @@
     <span>Welcome, Stoyan</span>
     <mat-icon class="example-icon" mat-button [matMenuTriggerFor]="menu">face</mat-icon>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>Login</button>
-      <button mat-menu-item>Register</button>
+      <a mat-menu-item routerLink="/auth/login">Login</a>
+      <a mat-menu-item routerLink="/auth/register">Register</a>
       <a mat-menu-item routerLink="/projects/my">My projects</a>
     </mat-menu>
   </mat-toolbar-row>

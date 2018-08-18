@@ -1,0 +1,28 @@
+<div class="centeredContentWrapper">
+  <h2>Edit {{projectId || loading}}</h2>
+</div>
+<div class="centeredForm">
+  <form>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Name">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <textarea matInput placeholder="Description"></textarea>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-chip-list #chipList>
+        <mat-chip *ngFor="let fruit of ['banana', 'orange', 'something']" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
+          {{fruit}}
+          <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="Members" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+    </mat-form-field>
+    <div class="centeredContentWrapper">
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <a class="cancelBtn" mat-raised-button routerLink="/projects/my">Cancel</a>
+    </div>
+  </form>
+</div>

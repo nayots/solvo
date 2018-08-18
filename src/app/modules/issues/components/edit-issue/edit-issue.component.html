@@ -1,0 +1,25 @@
+<div class="centeredContentWrapper">
+  <h2>Edit issue {{issueId}} for Project {{projectId}}</h2>
+</div>
+<div class="centeredForm">
+  <form>
+    <mat-form-field class="full-width">
+      <input matInput disabled placeholder="Title" value="ads">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <textarea matInput placeholder="Description"></textarea>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-select placeholder="Issue status">
+        <mat-option *ngFor="let status of ['New', 'In progress', 'Closed']">
+          {{status}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="centeredContentWrapper">
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <a class="cancelBtn" mat-raised-button routerLink="/issues/{{projectId}}/view/{{issueId}}">Cancel</a>
+    </div>
+  </form>
+</div>
