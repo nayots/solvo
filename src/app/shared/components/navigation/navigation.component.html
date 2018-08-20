@@ -5,16 +5,17 @@
       <span>Solvo</span>
     </a>
     <span class="example-spacer"></span>
-    <a mat-flat-button routerLink="/projects/add">
+    <a *ngIf="user" mat-flat-button routerLink="/projects/add">
       <mat-icon>add</mat-icon>
       <span>New Project</span>
     </a>
-    <span>Welcome, Stoyan</span>
+    <span *ngIf="user">Welcome, {{user.email}}</span>
     <mat-icon class="example-icon" mat-button [matMenuTriggerFor]="menu">face</mat-icon>
     <mat-menu #menu="matMenu">
-      <a mat-menu-item routerLink="/auth/login">Login</a>
-      <a mat-menu-item routerLink="/auth/register">Register</a>
-      <a mat-menu-item routerLink="/projects/my">My projects</a>
+      <a *ngIf="!user" mat-menu-item routerLink="/auth/login">Login</a>
+      <a *ngIf="!user" mat-menu-item routerLink="/auth/register">Register</a>
+      <a *ngIf="user" mat-menu-item routerLink="/projects/my">My projects</a>
+      <a *ngIf="user" mat-menu-item (click)="logout()">Logout</a>
     </mat-menu>
   </mat-toolbar-row>
 </mat-toolbar>

@@ -7,9 +7,16 @@ import { EditProjectComponent } from "./components/edit-project/edit-project.com
 import { ViewProjectComponent } from "./components/view-project/view-project.component";
 import { DeleteProjectComponent } from "./components/delete-project/delete-project.component";
 import { MaterialModule } from "../material/material.module";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
-  imports: [CommonModule, MaterialModule, AppRoutingModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
   declarations: [
     MyProjectsComponent,
     AddProjectComponent,

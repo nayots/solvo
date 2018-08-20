@@ -13,6 +13,8 @@ import { EditIssueComponent } from "./issues/components/edit-issue/edit-issue.co
 import { DeleteIssueComponent } from "./issues/components/delete-issue/delete-issue.component";
 import { ViewIssueComponent } from "./issues/components/view-issue/view-issue.component";
 import { LandingComponent } from "../shared/components/landing/landing.component";
+import { AuthGuard } from "../core/guards/auth.guard";
+import { AnnonymousGuard } from "../core/guards/annonymous.guard";
 
 const routes: Routes = [
   {
@@ -23,7 +25,8 @@ const routes: Routes = [
       { path: "edit/:id", component: EditProjectComponent },
       { path: "view/:id", component: ViewProjectComponent },
       { path: "delete/:id", component: DeleteProjectComponent }
-    ]
+    ],
+    canActivate: [AuthGuard]
   },
   {
     path: "issues",
@@ -32,16 +35,18 @@ const routes: Routes = [
       { path: ":projectId/edit/:id", component: EditIssueComponent },
       { path: ":projectId/view/:id", component: ViewIssueComponent },
       { path: ":projectId/delete/:id", component: DeleteIssueComponent }
-    ]
+    ],
+    canActivate: [AuthGuard]
   },
   {
     path: "auth",
     children: [
       { path: "login", component: LoginComponent },
       { path: "register", component: RegisterComponent }
-    ]
+    ],
+    canActivate: [AnnonymousGuard]
   },
-  { path: "", component: LandingComponent },
+  { path: "", component: LandingComponent, canActivate: [AnnonymousGuard] },
   { path: "**", component: NotFoundComponent }
 ];
 

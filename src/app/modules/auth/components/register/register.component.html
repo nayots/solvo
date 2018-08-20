@@ -1,17 +1,23 @@
 <div class="centeredForm">
-  <form class="example-form">
+  <form class="example-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="full-width">
-      <input matInput placeholder="Email">
+      <input matInput placeholder="Email" type="email" formControlName="email">
+      <mat-error *ngIf="email.errors?.required">Email is required</mat-error>
+      <mat-error *ngIf="email.errors?.pattern">A valid email is required</mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <input matInput type="password" placeholder="Password" />
+      <input matInput type="password" placeholder="Password" formControlName="password" />
+      <mat-error *ngIf="confirmPassword.errors?.required">Password is required</mat-error>
+      <mat-error *ngIf="confirmPassword.errors?.pattern">Password must be 4-16 characters long</mat-error>
     </mat-form-field>
     <mat-form-field class="full-width">
-      <input matInput type="password" placeholder="Confirm Password" />
+      <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" />
+      <mat-error *ngIf="confirmPassword.errors?.required">Confirm the password</mat-error>
+      <mat-error *ngIf="confirmPassword.errors?.MatchPassword">Passwords do not match</mat-error>
     </mat-form-field>
     <div class="centeredContentWrapper">
-      <button mat-raised-button color="primary" type="submit">Register</button>
+      <button [disabled]="registerForm.invalid" mat-raised-button color="primary" type="submit">Register</button>
     </div>
   </form>
 </div>

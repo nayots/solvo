@@ -2,18 +2,20 @@
   <h2>Add new project</h2>
 </div>
 <div class="centeredForm">
-  <form>
+  <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="full-width">
-      <input matInput placeholder="Name">
+      <input matInput placeholder="Name" formControlName="name">
+      <mat-error *ngIf="name.errors?.required">Name is required</mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <textarea matInput placeholder="Description"></textarea>
+      <textarea matInput placeholder="Description" formControlName="description"></textarea>
+      <mat-error *ngIf="description.errors?.required">Description is required</mat-error>
     </mat-form-field>
     <mat-form-field class="full-width">
       <mat-chip-list #chipList>
-        <mat-chip *ngFor="let fruit of ['angular', 'c', 'yolo']" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
-          {{fruit}}
+        <mat-chip *ngFor="let tagName of tags" [selectable]="selectable" [removable]="removable" (removed)="remove(tagName)">
+          {{tagName}}
           <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
         </mat-chip>
         <input placeholder="Tags" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
@@ -21,7 +23,7 @@
       </mat-chip-list>
     </mat-form-field>
     <div class="centeredContentWrapper">
-      <button mat-raised-button color="primary" type="submit">Add</button>
+      <button [disabled]="projectForm.invalid" mat-raised-button color="primary" type="submit">Add</button>
       <a class="cancelBtn" mat-raised-button routerLink="/projects/my">Cancel</a>
     </div>
   </form>

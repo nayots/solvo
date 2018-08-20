@@ -11,6 +11,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatListModule } from "@angular/material/list";
 import { MatSelectModule } from "@angular/material/select";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { MatSelectModule } from "@angular/material/select";
     MatChipsModule,
     MatBadgeModule,
     MatListModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   exports: [
     CommonModule,
@@ -37,7 +39,8 @@ import { MatSelectModule } from "@angular/material/select";
     MatChipsModule,
     MatBadgeModule,
     MatListModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   declarations: []
 })

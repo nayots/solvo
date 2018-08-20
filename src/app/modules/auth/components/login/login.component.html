@@ -1,14 +1,16 @@
 <div class="centeredForm">
-  <form class="example-form">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="full-width">
-      <input matInput placeholder="Email">
+      <input matInput placeholder="Email" type="email" formControlName="email">
+      <mat-error *ngIf="email.errors?.required">A valid email is required</mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <input matInput type="password" placeholder="Password" />
+      <input matInput type="password" placeholder="Password" formControlName="password" />
+      <mat-error *ngIf="password.errors?.required">Password cannot be empty</mat-error>
     </mat-form-field>
     <div class="centeredContentWrapper">
-      <button mat-raised-button color="primary" type="submit">Log me in!</button>
+      <button [disabled]="loginForm.invalid" mat-raised-button color="primary" type="submit">Log me in!</button>
     </div>
   </form>
 </div>
