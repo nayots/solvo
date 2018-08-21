@@ -2,8 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { User } from "../../../../core/models/user";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthService } from "../../../../core/services/auth.service";
-import { MatChipInputEvent } from "@angular/material";
+import { MatChipInputEvent, MatSnackBar } from "@angular/material";
 import { COMMA, ENTER } from "@angular/cdk/keycodes";
+import { ProjectService } from "../../../../core/services/project.service";
+import { Project } from "../../../../core/models/project";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-add-project",
@@ -18,7 +21,13 @@ export class AddProjectComponent implements OnInit {
   public visible = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   public user: User;
-  constructor(private fb: FormBuilder, private auth: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private projectService: ProjectService,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {
     this.tags = [];
   }
 
@@ -34,15 +43,15 @@ export class AddProjectComponent implements OnInit {
     const input = event.input;
     const value = event.value;
 
-    // Add our fruit
     if ((value || "").trim()) {
       const tagToAdd = value.trim().replace(/#/g, "");
       if (tagToAdd) {
-        this.tags.push(tagToAdd);
+        if (!this.tags.includes(tagToAdd)) {
+          this.tags.push(tagToAdd);
+        }
       }
     }
 
-    // Reset the input value
     if (input) {
       input.value = "";
     }
@@ -59,6 +68,22 @@ export class AddProjectComponent implements OnInit {
 
   onSubmit() {
     console.log(this.projectForm.value);
+
+    const projectData: Project = {
+      name: this.name.value,
+      description: this.description.value,
+      tags: this.tags,
+      ownerId: this.user.uid,
+      members: [],
+      issues: []
+    };
+    this.projectService.saveProject(projectData).subscribe(r => {
+      console.log(r);
+      this.snackBar.open("Project created", "⭐", {
+        duration: 3000
+      });
+      this.router.navigate(["/projects/my"]);
+    });
   }
 
   get name() {

@@ -1,34 +1,61 @@
+<div class="centeredContentWrapper">
+  <h1>Owned projects</h1>
+</div>
 <div class="gridWrapper">
-  <div class="cardWrapper" *ngFor="let i of [1,2,3,4,5]">
+  <div class="cardWrapper" *ngFor="let proj of ownedProjects$ | async">
     <mat-card>
       <mat-card-header>
-        <mat-card-title>Project Name</mat-card-title>
+        <mat-card-title>{{proj.name}}</mat-card-title>
         <mat-card-subtitle>
           <mat-chip-list>
-            <mat-chip>#angular</mat-chip>
-            <mat-chip>#c</mat-chip>
-            <mat-chip>#yolo</mat-chip>
+            <mat-chip *ngFor="let tag of proj.tags">{{tag}}</mat-chip>
           </mat-chip-list>
         </mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
-          very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
-        </p>
+        <p>{{proj.description | slice:0:120}}<span *ngIf="proj.description.length > 120">...</span></p>
         <mat-chip-list>
-          <mat-chip color="primary" selected>SG</mat-chip>
-          <mat-chip color="primary" selected>ST</mat-chip>
-          <mat-chip color="primary" selected>ZD</mat-chip>
-          <mat-chip color="primary" selected>AS</mat-chip>
+          <mat-chip color="primary" selected *ngFor="let member of proj.members">{{member}}</mat-chip>
+          <mat-chip color="primary" selected *ngIf="proj.members.length === 0">No members</mat-chip>
         </mat-chip-list>
       </mat-card-content>
       <mat-card-actions class="projectBtnsWrapper">
-        <a mat-stroked-button matBadge="8" matBadgePosition="after" matBadgeColor="accent" routerLink="/projects/view/{{i}}">
+        <a mat-stroked-button matBadge="{{proj.issues.length || 0}}" matBadgePosition="after" matBadgeColor="accent" routerLink="/projects/view/{{proj.uid}}">
           View
         </a>
-        <a mat-stroked-button routerLink="/projects/edit/{{i}}">Edit</a>
-        <a mat-stroked-button routerLink="/projects/delete/{{i}}">Delete</a>
+        <a mat-stroked-button routerLink="/projects/edit/{{proj.uid}}">Edit</a>
+        <a mat-stroked-button routerLink="/projects/delete/{{proj.uid}}">Delete</a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+<div class="centeredContentWrapper">
+  <h1>Shared projects</h1>
+</div>
+<div class="gridWrapper">
+  <div class="cardWrapper" *ngFor="let proj of sharedProjects$ | async">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{proj.name}}</mat-card-title>
+        <mat-card-subtitle>
+          <mat-chip-list>
+            <mat-chip *ngFor="let tag of proj.tags">{{tag}}</mat-chip>
+          </mat-chip-list>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{proj.description | slice:0:120}}<span *ngIf="proj.description.length > 120">...</span></p>
+        <mat-chip-list>
+          <mat-chip color="primary" selected *ngFor="let member of proj.members">{{member}}</mat-chip>
+          <mat-chip color="primary" selected *ngIf="proj.members.length === 0">No members</mat-chip>
+        </mat-chip-list>
+      </mat-card-content>
+      <mat-card-actions class="projectBtnsWrapper">
+        <a mat-stroked-button matBadge="{{proj.issues.length || 0}}" matBadgePosition="after" matBadgeColor="accent" routerLink="/projects/view/{{proj.uid}}">
+          View
+        </a>
+        <a mat-stroked-button routerLink="/projects/edit/{{proj.uid}}">Edit</a>
+        <a mat-stroked-button routerLink="/projects/delete/{{proj.uid}}">Delete</a>
       </mat-card-actions>
     </mat-card>
   </div>
