@@ -46,4 +46,18 @@ export class ProjectService {
       )
       .valueChanges();
   }
+
+  public getProjectByUid(projectUid: string) {
+    return this.afs.doc<Project>(`projects/${projectUid}`).valueChanges();
+  }
+
+  public updateProject(projectUid: string, data: any) {
+    const projectRef = this.afs.doc<Project>(`projects/${projectUid}`).ref;
+
+    return projectRef.set(data, { merge: true });
+  }
+
+  public deleteProjectByUid(projectUid: string) {
+    return this.afs.doc<Project>(`projects/${projectUid}`).delete();
+  }
 }
