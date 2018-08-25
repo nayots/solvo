@@ -1,17 +1,27 @@
 <div class="centeredContentWrapper">
   <h1>Welcome to Solvo!</h1>
 </div>
-<div class="centeredContentWrapper">
-  <h2>Join for free now by registering</h2>
+<div *ngIf="!user">
+  <div class="centeredContentWrapper">
+    <h2>Join for free now by registering</h2>
+  </div>
+  <div class="centeredContentWrapper">
+    <a mat-raised-button color="primary" routerLink="/auth/register">Register</a>
+  </div>
+  <div class="centeredContentWrapper">
+    <h4>or log in of you are already a member</h4>
+  </div>
+  <div class="centeredContentWrapper">
+    <a mat-raised-button routerLink="/auth/login">Login</a>
+  </div>
 </div>
-<div class="centeredContentWrapper">
-  <a mat-raised-button color="primary" routerLink="/auth/register">Register</a>
-</div>
-<div class="centeredContentWrapper">
-  <h4>or log in of you are already a member</h4>
-</div>
-<div class="centeredContentWrapper">
-  <a mat-raised-button routerLink="/auth/login">Login</a>
+<div *ngIf="user">
+  <div class="centeredContentWrapper">
+    <h2>Continue where you left off.</h2>
+  </div>
+  <div class="centeredContentWrapper">
+    <a mat-raised-button color="accent" routerLink="/projects/my">My Projects</a>
+  </div>
 </div>
 <div class="centeredContentWrapper">
   <img class="splashImg" src="http://dogeweather.com/img/doge/01n.png" alt="">

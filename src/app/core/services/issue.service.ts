@@ -1,4 +1,4 @@
-import { switchMap, map, take } from "rxjs/operators";
+import { switchMap, map, take, tap } from "rxjs/operators";
 import { ProjectService } from "./project.service";
 import { Injectable } from "@angular/core";
 import {
@@ -45,6 +45,47 @@ export class IssueService {
           });
         })
     );
+  }
+
+  public getIssuesForProjectByUid(projectUid: string): Observable<Issue[]> {
+    return this.afs
+      .collection<Issue>("issues", ref =>
+        ref.where("projectUid", "==", projectUid)
+      )
+      .valueChanges();
+  }
+
+  public updateIssueByUid(issueUid: string, data: any): Promise<void> {
+    const issueRef: AngularFirestoreDocument<Issue> = this.afs.doc(
+      `issues/${issueUid}`
+    );
+
+    return issueRef.set(data, { merge: true });
+  }
+
+  public deleteIssueByUid(issueUid: string, projectUid: string): Promise<void> {
+    const issueRef: AngularFirestoreDocument<Issue> = this.afs.doc(
+      `issues/${issueUid}`
+    );
+
+    const projectRef: AngularFirestoreDocument<Project> = this.afs.doc(
+      `projects/${projectUid}`
+    );
+
+    projectRef.valueChanges().subscribe(prj => {
+      const filteredIssues: string[] = prj.issues.filter(isUid => {
+        return isUid !== issueUid;
+      });
+      projectRef.update({
+        issues: filteredIssues
+      });
+    });
+
+    return issueRef.delete();
+  }
+
+  public getIssueByUid(issueUid: string): Observable<Issue> {
+    return this.afs.doc<Issue>(`issues/${issueUid}`).valueChanges();
   }
 
   public currentUserHasIssueRights(projectUid: string): Observable<boolean> {

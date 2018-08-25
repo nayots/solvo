@@ -1,25 +1,32 @@
-<div class="centeredContentWrapper">
-  <h2>Edit issue {{issueId}} for Project {{projectId}}</h2>
+<div class="centeredContentWrapper" *ngIf="issue">
+  <h2>Edit issue {{issue.title}}</h2>
 </div>
-<div class="centeredForm">
-  <form>
+<div class="centeredForm" *ngIf="issue">
+  <form [formGroup]="issueForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="full-width">
-      <input matInput disabled placeholder="Title" value="ads">
+      <input matInput placeholder="Title" formControlName="title">
+      <mat-error *ngIf="title.errors?.required">Title is required</mat-error>
+      <mat-error *ngIf="title.errors?.pattern">Title cannot be empty or whitespace</mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <textarea matInput placeholder="Description"></textarea>
+      <textarea matInput placeholder="Description" formControlName="description"></textarea>
+      <mat-error *ngIf="description.errors?.pattern">Description cannot be empty or whitespace</mat-error>
     </mat-form-field>
     <mat-form-field class="full-width">
-      <mat-select placeholder="Issue status">
-        <mat-option *ngFor="let status of ['New', 'In progress', 'Closed']">
-          {{status}}
+      <mat-select placeholder="Issue status" formControlName="status">
+        <mat-option *ngFor="let sts of ['New', 'InProgress', 'Closed']" [value]="sts">
+          {{sts}}
         </mat-option>
       </mat-select>
+      <mat-error *ngIf="status.errors?.required">Status is required</mat-error>
     </mat-form-field>
     <div class="centeredContentWrapper">
-      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <button mat-raised-button color="primary" [disabled]="issueForm.invalid || issueForm.untouched" type="submit">Submit</button>
       <a class="cancelBtn" mat-raised-button routerLink="/issues/{{projectId}}/view/{{issueId}}">Cancel</a>
     </div>
   </form>
+</div>
+<div class="centeredContentWrapper" *ngIf="!issue">
+  Loading...
 </div>

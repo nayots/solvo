@@ -1,5 +1,5 @@
 <div class="centeredContentWrapper" *ngIf="projectId">
-  <h2>Add new issue for Project {{projectId}}</h2>
+  <h2 *ngIf="project">Add new issue for Project "{{project.name}}"</h2>
 </div>
 <div class="centeredForm">
   <form [formGroup]="issueForm" (ngSubmit)="onSubmit()">

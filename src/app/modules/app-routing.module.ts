@@ -40,13 +40,13 @@ const routes: Routes = [
   },
   {
     path: "auth",
+    canActivate: [AnnonymousGuard],
     children: [
       { path: "login", component: LoginComponent },
       { path: "register", component: RegisterComponent }
-    ],
-    canActivate: [AnnonymousGuard]
+    ]
   },
-  { path: "", component: LandingComponent, canActivate: [AnnonymousGuard] },
+  { path: "", component: LandingComponent },
   { path: "**", component: NotFoundComponent }
 ];
 

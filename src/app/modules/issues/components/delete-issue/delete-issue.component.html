@@ -1,14 +1,15 @@
-<div class="centeredContentWrapper">
-  <h2>Delete issue {{issueId}} for project {{projectId}}</h2>
+<div class="centeredContentWrapper" *ngIf="issue">
+  <h2>Delete issue {{issue.title}}</h2>
 </div>
 <div class="centeredForm">
   <div class="centeredContentWrapper">
-    <h4>Are you sure you want to delete {{issueId}}</h4>
+    <h4>Are you sure you want to delete {{issue.title}}</h4>
   </div>
-  <form>
-    <div class="centeredContentWrapper">
-      <button mat-raised-button color="warn" type="submit">Delete</button>
-      <a class="cancelBtn" mat-raised-button routerLink="/issues/{{projectId}}/view/{{issueId}}">Cancel</a>
-    </div>
-  </form>
+  <div class="centeredContentWrapper">
+    <button mat-raised-button color="warn" (click)="onConfirm()">Delete</button>
+    <a class="cancelBtn" mat-raised-button routerLink="/issues/{{projectId}}/view/{{issueId}}">Cancel</a>
+  </div>
+</div>
+<div class="centeredContentWrapper" *ngIf="!issue">
+  Loading...
 </div>

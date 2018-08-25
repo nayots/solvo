@@ -8,6 +8,8 @@ import { IssueService } from "../../../../core/services/issue.service";
 import { MatSnackBar } from "@angular/material";
 import { Issue } from "../../../../core/models/issue";
 import { Status } from "../../../../core/models/status.enum";
+import { Project } from "../../../../core/models/project";
+import { ProjectService } from "../../../../core/services/project.service";
 
 @Component({
   selector: "app-add-issue",
@@ -17,12 +19,14 @@ import { Status } from "../../../../core/models/status.enum";
 export class AddIssueComponent implements OnInit {
   public projectId: string;
   public issueForm: FormGroup;
+  public project: Project;
   private user: User;
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private auth: AuthService,
     private issueService: IssueService,
+    private projService: ProjectService,
     private router: Router,
     private snackBar: MatSnackBar
   ) {}
@@ -30,6 +34,9 @@ export class AddIssueComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.projectId = params["projectId"];
+      this.projService
+        .getProjectByUid(params["projectId"])
+        .subscribe(pr => (this.project = pr));
       this.issueService
         .currentUserHasIssueRights(this.projectId)
         .subscribe(hasRights => {
