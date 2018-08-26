@@ -10,7 +10,7 @@ import { PasswordValidation } from "../../../../core/validators/passwordValidati
   styleUrls: ["./register.component.scss"]
 })
 export class RegisterComponent implements OnInit {
-  private registerForm: FormGroup;
+  public registerForm: FormGroup;
   public user: User;
   constructor(private fb: FormBuilder, private auth: AuthService) {}
 

@@ -21,6 +21,7 @@ import { AngularFirestoreModule } from "angularfire2/firestore";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ErrorInterceptor } from "./core/interceptors/app.error.interceptor";
 import { AnnonymousGuard } from "./core/guards/annonymous.guard";
+import { AdminModule } from "./modules/admin/admin.module";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AnnonymousGuard } from "./core/guards/annonymous.guard";
     AuthModule,
     MaterialModule,
     IssuesModule,
-    HttpClientModule
+    HttpClientModule,
+    AdminModule
   ],
   providers: [
     AuthGuard,

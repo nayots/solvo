@@ -1,0 +1,9 @@
+<div>
+  <div class="centeredContentWrapper">User: {{user.email}}</div>
+  <div class="centeredContentWrapper adminOptions">
+    <button mat-raised-button *ngIf="!user.roles.admin" color="accent" [disabled]="isProcessing" (click)="changeAdminStatus(true)">Make
+      admin</button>
+    <button mat-raised-button *ngIf="user.roles.admin" color="accent" [disabled]="isProcessing" (click)="changeAdminStatus(false)">Remove
+      admin</button>
+  </div>
+</div>

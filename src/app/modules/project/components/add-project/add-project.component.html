@@ -6,11 +6,13 @@
     <mat-form-field class="full-width">
       <input matInput placeholder="Name" formControlName="name">
       <mat-error *ngIf="name.errors?.required">Name is required</mat-error>
+      <mat-error *ngIf="name.errors?.pattern">Name cannot be blank</mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <textarea matInput placeholder="Description" formControlName="description"></textarea>
       <mat-error *ngIf="description.errors?.required">Description is required</mat-error>
+      <mat-error *ngIf="description.errors?.pattern">Description cannot be blank</mat-error>
     </mat-form-field>
     <mat-form-field class="full-width">
       <mat-chip-list #chipList>
@@ -18,8 +20,7 @@
           {{tagName}}
           <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
         </mat-chip>
-        <input placeholder="Tags" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-          (matChipInputTokenEnd)="add($event)">
+        <input placeholder="Tags" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
       </mat-chip-list>
     </mat-form-field>
     <div class="centeredContentWrapper">

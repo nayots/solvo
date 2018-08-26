@@ -15,6 +15,8 @@ import { ViewIssueComponent } from "./issues/components/view-issue/view-issue.co
 import { LandingComponent } from "../shared/components/landing/landing.component";
 import { AuthGuard } from "../core/guards/auth.guard";
 import { AnnonymousGuard } from "../core/guards/annonymous.guard";
+import { AdminViewComponent } from "./admin/components/admin-view/admin-view.component";
+import { AdminGuard } from "../core/guards/admin.guard";
 
 const routes: Routes = [
   {
@@ -27,6 +29,11 @@ const routes: Routes = [
       { path: "delete/:id", component: DeleteProjectComponent }
     ],
     canActivate: [AuthGuard]
+  },
+  {
+    path: "admin",
+    component: AdminViewComponent,
+    canActivate: [AdminGuard]
   },
   {
     path: "issues",

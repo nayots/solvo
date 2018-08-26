@@ -39,8 +39,8 @@ export class EditProjectComponent implements OnInit {
 
   ngOnInit() {
     this.projectForm = this.fb.group({
-      name: ["", [Validators.required]],
-      description: ["", Validators.required]
+      name: ["", [Validators.required, Validators.pattern("^[^\\s].*")]],
+      description: ["", Validators.required, Validators.pattern("^[^\\s].*")]
     });
     this.auth.user$.subscribe(user => (this.user = user));
     this.activatedRoute.params.subscribe(params => {

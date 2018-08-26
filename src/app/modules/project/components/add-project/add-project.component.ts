@@ -14,7 +14,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./add-project.component.scss"]
 })
 export class AddProjectComponent implements OnInit {
-  private projectForm: FormGroup;
+  public projectForm: FormGroup;
   public tags: string[];
   public selectable = true;
   public removable = true;
@@ -33,8 +33,8 @@ export class AddProjectComponent implements OnInit {
 
   ngOnInit() {
     this.projectForm = this.fb.group({
-      name: ["", [Validators.required]],
-      description: ["", Validators.required]
+      name: ["", [Validators.required, Validators.pattern("^[^\\s].*")]],
+      description: ["", Validators.required, Validators.pattern("^[^\\s].*")]
     });
     this.auth.user$.subscribe(user => (this.user = user));
   }

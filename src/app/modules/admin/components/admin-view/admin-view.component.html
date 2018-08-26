@@ -1,0 +1,11 @@
+<div class="centeredContentWrapper">
+  <p>
+    You can only see this if you are an admin, but because of the nature of this app admin roles are stupid and useless. :)
+  </p>
+</div>
+<div>
+  <div *ngFor="let user of users$ | async">
+    <app-change-user-role [user]="user"></app-change-user-role>
+    <br>
+  </div>
+</div>
