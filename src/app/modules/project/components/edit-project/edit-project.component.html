@@ -13,7 +13,6 @@
     <mat-form-field class="full-width">
       <textarea matInput placeholder="Description" formControlName="description"></textarea>
       <mat-error *ngIf="description.errors?.required">Description is required</mat-error>
-      <mat-error *ngIf="description.errors?.pattern">Description cannot be blank</mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">

@@ -18,7 +18,7 @@ export class EditProjectComponent implements OnInit {
   public projectId: string;
   public user: User;
   public project: Project;
-  private projectForm: FormGroup;
+  public projectForm: FormGroup;
   public tags: string[];
   public memberEmails: string[];
   public selectable = true;
@@ -40,7 +40,7 @@ export class EditProjectComponent implements OnInit {
   ngOnInit() {
     this.projectForm = this.fb.group({
       name: ["", [Validators.required, Validators.pattern("^[^\\s].*")]],
-      description: ["", Validators.required, Validators.pattern("^[^\\s].*")]
+      description: ["", Validators.required]
     });
     this.auth.user$.subscribe(user => (this.user = user));
     this.activatedRoute.params.subscribe(params => {
@@ -56,8 +56,8 @@ export class EditProjectComponent implements OnInit {
         this.project = pr;
         this.name.setValue(pr.name);
         this.description.setValue(pr.description);
-        this.tags = pr.tags || [];
-        this.memberEmails = pr.members || [];
+        this.tags = pr.tags;
+        this.memberEmails = pr.members;
       });
     });
   }

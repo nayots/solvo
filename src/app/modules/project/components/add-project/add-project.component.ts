@@ -34,7 +34,7 @@ export class AddProjectComponent implements OnInit {
   ngOnInit() {
     this.projectForm = this.fb.group({
       name: ["", [Validators.required, Validators.pattern("^[^\\s].*")]],
-      description: ["", Validators.required, Validators.pattern("^[^\\s].*")]
+      description: ["", Validators.required]
     });
     this.auth.user$.subscribe(user => (this.user = user));
   }
